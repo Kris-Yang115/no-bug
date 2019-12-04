@@ -1,0 +1,376 @@
+Exercise1
+intput:
+/********************************************************************************************
+ * This program allows the user to order a pizza
+ * Input: your name, pizza's size, type of crust, and other additional toppings
+ * Output: The cost and other details about your pizza order.
+ * 
+ * Author: Xuedong Yang
+ * Date: October 11, 2018
+ * 
+ ********************************************************************************************/
+import java.util.Scanner;
+	public class PizzaOrder
+	{
+	   public static void main (String [] args)
+	   {
+	      	//Required variables. Do not modify any of these variables
+		//Add any extra variables you need to accomplish the job
+
+	      String firstName;             //user's first name
+	      boolean discount = false;     //flag, true if user is eligible for discount
+	      int inches;                   //size of the pizza
+	      char crustType;               //code for type of crust
+	      String crust = "Hand-tossed"; //name of crust
+	      double cost = 12.99;          //default cost of the pizza
+	      final double TAX_RATE = .08;  //sales tax rate
+	      double tax;                   //amount of tax
+	      char choice;                  //user's choice
+	      String input;                 //user input
+	      String toppings = "Cheese ";  //list of toppings
+	      int numberOfToppings = 0;     //number of toppings
+
+	      	//Create a Scanner object to read input
+	      Scanner kb = new Scanner(System.in);
+	     
+		 //Introduce program to user
+	      System.out.println("Welcome to Mike and Diane's Pizza");
+
+	      	//TASK #1 Prompt user for their first name and read their first name into the variable firstName.
+		//-----------------------------------------------------------------------------------------------
+
+	      System.out.print("Enter Your First Name: ");
+	      firstName = kb.nextLine();
+		
+	      	//TASK #2 Compare user's first name with the first names of the owners (Mike or Diane).
+		//-----------------------------------------------------------------------------------------------
+		//DO NOT USE == TO COMPARE THE NAMES
+	      	//Set the variable discount to true if they match
+	        
+	        if(firstName.equalsIgnoreCase("Mike") || firstName.equalsIgnoreCase("Diane")) {
+	        	discount = true;
+	        }
+	       
+	        
+		  
+	      	//Display the pizza sizes and allow the user to select a size
+	      System.out.println("Pizza Size (inches)   Cost");
+	      System.out.println("        10            $10.99");
+	      System.out.println("        12            $12.99");
+	      System.out.println("        14            $14.99");
+	      System.out.println("        16            $16.99");
+		  
+		  //prompt user and get pizza size choice
+	      System.out.println("What size pizza would you like?");
+	      System.out.print("10, 12, 14, or 16? (enter the number only): ");
+	      inches = kb.nextInt();
+		  
+	      	//consume the newline character left after the scanned integer 
+	      kb.nextLine();
+
+	      
+	      	//TASK #3 Adjust the cost of the pizza based on the size the user has entered
+		//-----------------------------------------------------------------------------------------------
+
+	      if (inches == 10) {
+	    	  cost = 10.99;
+	      }
+	      else if (inches == 12) {
+	    	  cost = 12.99;
+	      }
+	      else if (inches == 14) {
+	    	  cost = 14.99;
+	      }
+	      else if (inches == 16) {
+	    	  cost = 16.99;
+	      }
+	      
+	      	//prompt user and get crust choice
+	      System.out.println("What type of crust do you want? ");
+	      System.out.print("(H)Hand-tossed, (T) Thin-crust, or " +
+	         "(D) Deep-dish (enter H, T, or D): ");
+	      input = kb.nextLine();
+	      crustType = input.charAt(0); //This is how you obtain crustType
+	      
+	      	//TASK #4 using a switch or an if-else-if statement, 
+		//-----------------------------------------------------------------------------------------------
+		//Adjust the user's crust based on the crustType they have just entered
+
+	    if (crustType == 'H') {
+	    	crust = "Hand-tossed";
+	    }
+	    else if (crustType == 'T') {
+	    	crust = "Thin-crust";
+	    }
+	    else if (crustType == 'D') {
+	    	crust = "Deep-dish";
+	    }
+
+	     	 //prompt user and get topping choices one at a time
+	      System.out.println("All pizzas come with cheese.");
+	      System.out.println("Additional toppings are $1.25 each,"
+	            +" choose from");
+	      System.out.println("Pepperoni, Sausage, Onion, Mushroom");
+
+		//See if topping is desired
+	      System.out.print("Do you want Pepperoni?  (Y/N):  ");
+	      input = kb.nextLine();
+	      choice = input.charAt(0);
+	     	
+		// If so add to topping list and add 1 to number of toppings
+	      if (choice == 'Y' || choice == 'y')
+	      {
+	         numberOfToppings += 1;
+	         toppings = toppings + "Pepperoni ";
+	      }
+
+	      System.out.print("Do you want Sausage?  (Y/N):  ");
+	      input = kb.nextLine();
+	      choice = input.charAt(0);
+	      if (choice == 'Y' || choice == 'y')
+	      {
+	         numberOfToppings += 1;
+	         toppings = toppings + "Sausage ";
+	      }
+
+		//See if user wants onions
+	      System.out.print("Do you want Onion?  (Y/N):  ");
+	      input = kb.nextLine();
+	      choice = input.charAt(0);
+	      if (choice == 'Y' || choice == 'y')
+	      {
+	         numberOfToppings += 1;
+	         toppings = toppings + "Onion ";
+	      }
+
+		//See if user wants mushrooms
+	      System.out.print("Do you want Mushroom?  (Y/N):  ");
+	      input = kb.nextLine();
+	      choice = input.charAt(0);
+	      if (choice == 'Y' || choice == 'y')
+	      {
+	         numberOfToppings += 1;
+	         toppings = toppings + "Mushroom ";
+	      }
+
+	      	//add additional toppings cost to cost of pizza
+	      cost = cost + (1.25 * numberOfToppings);
+
+	      	//display order confirmation
+	      System.out.println();
+	      System.out.println("Your order is as follows: ");
+	      System.out.println(inches + " inch pizza");
+	      System.out.println(crust + " crust");
+	      System.out.println(toppings);
+
+
+	      	//TASK #5 Adjusting the cost 
+		//-----------------------------------------------------------------------------------------------
+		//Use an if statement that checks to see if the customer gets discount or not.
+		//Use the boolean variable discount here
+		//The body of the if statement should contain two statements:
+		//a) 	A statement that prints a message indicating that the user is eligible for a $2.00 discount.
+		//b)	A statement that reduces the cost by 2.
+
+	    if (discount == true) {
+	    	cost = cost - 2;
+	    	System.out.println("You have a $2.00 discount");
+	    }
+
+
+	      System.out.printf("The cost of your order is: $%.2f\n" , cost);
+
+	      	//calculate and display tax and total cost
+	      tax = cost * TAX_RATE;
+	      System.out.printf("The tax is: $%.2f\n" , tax);
+	      System.out.printf("The total due is: $%.2f\n" , (tax+cost));
+
+	      System.out.println("Your order will be ready for pickup in 30 minutes.");
+	      kb.close();
+	   }
+	
+	   
+}
+output1:
+Welcome to Mike and Diane's Pizza
+Enter Your First Name: Xuedong
+Pizza Size (inches)   Cost
+        10            $10.99
+        12            $12.99
+        14            $14.99
+        16            $16.99
+What size pizza would you like?
+10, 12, 14, or 16? (enter the number only): 12
+What type of crust do you want? 
+(H)Hand-tossed, (T) Thin-crust, or (D) Deep-dish (enter H, T, or D): H
+All pizzas come with cheese.
+Additional toppings are $1.25 each, choose from
+Pepperoni, Sausage, Onion, Mushroom
+Do you want Pepperoni?  (Y/N):  Y
+Do you want Sausage?  (Y/N):  Y
+Do you want Onion?  (Y/N):  Y
+Do you want Mushroom?  (Y/N):  Y
+
+Your order is as follows: 
+12 inch pizza
+Hand-tossed crust
+Cheese Pepperoni Sausage Onion Mushroom 
+The cost of your order is: $17.99
+The tax is: $1.44
+The total due is: $19.43
+Your order will be ready for pickup in 30 minutes.
+----------------------------------------------------------------------------------
+output2:
+Welcome to Mike and Diane's Pizza
+Enter Your First Name: Mike
+Pizza Size (inches)   Cost
+        10            $10.99
+        12            $12.99
+        14            $14.99
+        16            $16.99
+What size pizza would you like?
+10, 12, 14, or 16? (enter the number only): 16
+What type of crust do you want? 
+(H)Hand-tossed, (T) Thin-crust, or (D) Deep-dish (enter H, T, or D): D
+All pizzas come with cheese.
+Additional toppings are $1.25 each, choose from
+Pepperoni, Sausage, Onion, Mushroom
+Do you want Pepperoni?  (Y/N):  n
+Do you want Sausage?  (Y/N):  y
+Do you want Onion?  (Y/N):  y
+Do you want Mushroom?  (Y/N):  y
+
+Your order is as follows: 
+16 inch pizza
+Deep-dish crust
+Cheese Sausage Onion Mushroom 
+You have a $2.00 discount
+The cost of your order is: $18.74
+The tax is: $1.50
+The total due is: $20.24
+Your order will be ready for pickup in 30 minutes.
+--------------------------------------------------------------------------------
+output3:
+Welcome to Mike and Diane's Pizza
+Enter Your First Name: Trump
+Pizza Size (inches)   Cost
+        10            $10.99
+        12            $12.99
+        14            $14.99
+        16            $16.99
+What size pizza would you like?
+10, 12, 14, or 16? (enter the number only): 14
+What type of crust do you want? 
+(H)Hand-tossed, (T) Thin-crust, or (D) Deep-dish (enter H, T, or D): T
+All pizzas come with cheese.
+Additional toppings are $1.25 each, choose from
+Pepperoni, Sausage, Onion, Mushroom
+Do you want Pepperoni?  (Y/N):  Y
+Do you want Sausage?  (Y/N):  Y
+Do you want Onion?  (Y/N):  Y
+Do you want Mushroom?  (Y/N):  N
+
+Your order is as follows: 
+14 inch pizza
+Thin-crust crust
+Cheese Pepperoni Sausage Onion 
+The cost of your order is: $18.74
+The tax is: $1.50
+The total due is: $20.24
+Your order will be ready for pickup in 30 minutes.
+=============================================================================================================================
+Exercise2
+input:
+/********************************************************************************************
+ * This program allows the users print their average test scores and grade.
+ * Input: your recent three scores.
+ * Output: Your average of the test score and letter grade.
+ * 
+ * Author: Xuedong Yang
+ * Date: October 11, 2018
+ * 
+ ********************************************************************************************/
+import java.util.Scanner;
+
+public class TestScoresAndGrade {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+        double FirstScore;
+        double SecondScore;
+        double ThirdScore;
+        double average;
+        String LetterGrade = "A";
+        
+        System.out.println("Test Score Average      Letter Grade");
+        System.out.println("  90-100                 A");
+        System.out.println("  80-89                  B");
+        System.out.println("  70-79                  C");
+        System.out.println("  60-69                  D");
+        System.out.println("  Below 60               F");
+        
+        Scanner kb = new Scanner(System.in);
+        
+        System.out.print("Enter your first score: ");
+        FirstScore = kb.nextDouble();
+        System.out.print("Enter your second score: ");
+        SecondScore = kb.nextDouble();
+        System.out.print("Enter your third score");
+        ThirdScore = kb.nextDouble();
+        
+        average = (FirstScore + SecondScore + ThirdScore) / 3;
+        
+        if (average >= 90 && average <= 100) {
+        	LetterGrade = "A";
+        }
+        else if (average >= 80 && average <=89) {
+        	LetterGrade = "B";
+        }
+        else if (average >= 70 && average <=79) {
+        	LetterGrade  = "C";
+        }
+        else if (average >= 60 && average <=69) {
+        	LetterGrade = "D";
+        }
+        else if (average < 60) {
+        	LetterGrade = "F";
+        }
+        
+        System.out.printf("Your average of the test score: %.1f",average);
+        System.out.println();
+        System.out.println("Your letter grade: " + LetterGrade);
+        
+        kb.close();
+        
+        
+	}
+
+}
+output1:
+Test Score Average      Letter Grade
+  90-100                 A
+  80-89                  B
+  70-79                  C
+  60-69                  D
+  Below 60               F
+Enter your first score: 100
+Enter your second score: 99
+Enter your third score88
+Your average of the test score: 95.7
+Your letter grade: A
+---------------------------------------------------------
+output2:
+Test Score Average      Letter Grade
+  90-100                 A
+  80-89                  B
+  70-79                  C
+  60-69                  D
+  Below 60               F
+Enter your first score: 60
+Enter your second score: 70
+Enter your third score80
+Your average of the test score: 70.0
+Your letter grade: C
+===============================================================================================================
+Exercise3
+input:
